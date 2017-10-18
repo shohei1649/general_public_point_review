@@ -1,0 +1,114 @@
+consumes:
+- application/json
+definitions:
+  General_public_point_review:
+    description: Occupy Response (default view)
+    example:
+      code: 5.443115e+18
+      isSuccess: true
+      msg: Iusto rem magnam nobis beatae deserunt consectetur.
+      orderId: 8.10109e+17
+      otaOrderId: Suscipit cum voluptatem consequatur accusantium ipsa voluptate.
+      otaOrderStatus: 5.841593e+18
+    properties:
+      code:
+        example: 5.443115e+18
+        format: int64
+        type: integer
+      isSuccess:
+        example: true
+        type: boolean
+      msg:
+        example: Iusto rem magnam nobis beatae deserunt consectetur.
+        type: string
+      orderId:
+        example: 8.10109e+17
+        format: int64
+        type: integer
+      otaOrderId:
+        example: Suscipit cum voluptatem consequatur accusantium ipsa voluptate.
+        type: string
+      otaOrderStatus:
+        example: 5.841593e+18
+        format: int64
+        type: integer
+    required:
+    - code
+    - isSuccess
+    - msg
+    - otaOrderId
+    - otaOrderStatus
+    title: 'Mediatype identifier: application/vnd.general_public_point_review+json;
+      view=default'
+    type: object
+  OccupyPayLoad:
+    example:
+      agentId: 6.09993e+18
+      data: Quam commodi perferendis aperiam dignissimos officia.
+      otaId: 5.115397e+18
+      sign: Assumenda harum aut quo.
+    properties:
+      agentId:
+        example: 6.09993e+18
+        format: int64
+        type: integer
+      data:
+        example: Quam commodi perferendis aperiam dignissimos officia.
+        type: string
+      otaId:
+        example: 5.115397e+18
+        format: int64
+        type: integer
+      sign:
+        example: Assumenda harum aut quo.
+        type: string
+    required:
+    - otaId
+    - data
+    - sign
+    title: OccupyPayLoad
+    type: object
+host: localhost:8080
+info:
+  description: general_public_point_review_API
+  title: general_public_point_review API
+  version: 1.0.0
+paths:
+  /general_public_point_review/reservation:
+    post:
+      operationId: reservation#entry
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/OccupyPayLoad'
+      produces:
+      - application/vnd.general_public_point_review+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/General_public_point_review'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/General_public_point_review'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/General_public_point_review'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/General_public_point_review'
+      schemes:
+      - http
+      summary: entry reservation
+      tags:
+      - reservation
+produces:
+- application/json
+schemes:
+- http
+swagger: "2.0"
